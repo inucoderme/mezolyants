@@ -51,11 +51,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }%`;
 
   function triggerHapticFeedback() {
-    // Проверьте наличие Haptic Feedback API
-    if ('vibrate' in navigator) {
-      navigator.vibrate(50); // Вибрация на 50 миллисекунд
-    } else if ('impactOccurred' in window.navigator) {
-      // Использование Haptic Feedback API для устройств с Taptic Engine
+    // Использование WebKit Haptic Feedback API для устройств с Taptic Engine
+    if (window.navigator && window.navigator.vibrate) {
+      window.navigator.vibrate(50); // Вибрация на 50 миллисекунд
+    } else if (window.navigator && window.navigator.impactOccurred) {
       window.navigator.impactOccurred('medium');
     }
   }
