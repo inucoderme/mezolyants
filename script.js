@@ -50,11 +50,17 @@ document.addEventListener("DOMContentLoaded", () => {
     (clicksCount / maxClicks) * 100
   }%`;
 
+  function triggerVibration() {
+    if (navigator.vibrate) {
+      navigator.vibrate(50); // Вибрация на 50 миллисекунд
+    }
+  }
+
   function init() {
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
     renderer = new THREE.WebGLRenderer({ alpha: true });
-    renderer.setPixelRatio(window.devicePixelRatio); // Используем разрешение экрана устройства
+    renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(700, 700);
     document.getElementById("threeContainer").appendChild(renderer.domElement);
 
@@ -106,6 +112,9 @@ document.addEventListener("DOMContentLoaded", () => {
         buttonMesh.rotation.x = 0;
         buttonMesh.rotation.y = 0;
       }, 200);
+
+      // Вибрация при клике
+      triggerVibration();
 
       balance++;
       clicksCount++;
