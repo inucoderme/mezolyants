@@ -87,7 +87,7 @@ body {
 
 .button-container {
   position: absolute;
-  top: 57%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
@@ -153,7 +153,86 @@ body {
 
 .progress-bar {
   height: 100%; /* Высота соответствует высоте контейнера фона */
-  background-color: rgb(4, 0, 255);
+  background-color: rgb(177, 176, 227); /* Цвет полосы */
   width: 0%; /* Начальное состояние заполнения */
   transition: width 0.5s ease; /* Плавное изменение ширины */
+  box-shadow: 0 0 10px rgba(4, 0, 255, 0.8),
+    /* Внешнее свечение */ 0 0 20px rgba(4, 0, 255, 0.6),
+    /* Больше свечения */ 0 0 40px rgba(4, 0, 255, 0.4),
+    /* Ещё больше свечения */ 0 0 80px rgba(4, 0, 255, 0.2); /* Самое большое свечение */
+}
+
+@keyframes neon-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 10px rgba(4, 0, 255, 0.8), 0 0 20px rgba(4, 0, 255, 0.6),
+      0 0 40px rgba(4, 0, 255, 0.4), 0 0 80px rgba(4, 0, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(4, 0, 255, 1), 0 0 40px rgba(4, 0, 255, 0.8),
+      0 0 80px rgba(4, 0, 255, 0.6), 0 0 120px rgba(4, 0, 255, 0.4);
+  }
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #0035c5ce;
+  width: 0%;
+  transition: width 0.5s ease;
+  animation: neon-glow 3s ease-in-out infinite;
+}
+
+.side-button {
+  position: relative;
+  background-image: url("https://cdn.vectorstock.com/i/500p/47/39/gradient-purple-blue-background-design-abstract-vector-48874739.jpg"); /* Укажите путь к вашему изображению */
+  background-size: cover; /* Заполнение всей доступной области, сохраняя пропорции */
+  background-position: center; /* Центрирование изображения */
+  border-radius: 15px;
+  background-color: #000080;
+  width: 75px;
+  height: 75px;
+  left: 10px; /* Отступ слева */
+  top: 20%;
+  transform: translateY(-50%); /* Центрирование по вертикали */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer; /* Курсор в виде руки для кнопки */
+  text-decoration: none; /* Убрать подчеркивание текста */
+  z-index: 1; /* Размещает псевдоэлемент ниже текста */
+}
+
+.side-button img {
+  width: 50px; /* Размер изображения */
+  height: auto;
+}
+
+.side-button span {
+  margin-top: 30px; /* Отступ между изображением и текстом */
+  color: white; /* Цвет текста */
+  text-align: center;
+  font-size: 10px; /* Размер шрифта */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.right-button {
+  position: relative;
+  background-image: url("https://tailwindcomponents.com/gradient-generator/assets/header.a6837f08.webp"); /* Укажите путь к вашему изображению */
+  background-size: cover; /* Заполнение всей доступной области, сохраняя пропорции */
+  background-position: center; /* Центрирование изображения */
+  border-radius: 15px;
+  background-color: #000080;
+  width: 75px;
+  height: 75px;
+  left: 270px; /* Отступ слева */
+  top: -4%;
+  transform: translateY(-50%); /* Центрирование по вертикали */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer; /* Курсор в виде руки для кнопки */
+  text-decoration: none; /* Убрать подчеркивание текста */
+  z-index: 1; /* Размещает псевдоэлемент ниже текста */
 }
