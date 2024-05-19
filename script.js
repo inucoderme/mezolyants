@@ -51,8 +51,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }%`;
 
   function triggerVibration() {
-    if (navigator.vibrate) {
-      navigator.vibrate(50); // Вибрация на 50 миллисекунд
+    if (window.navigator && window.navigator.vibrate) {
+      // Вибрация для Android устройств
+      window.navigator.vibrate(50); // Вибрация на 50 миллисекунд
+    } else if (window.navigator && window.navigator.webkitVibrate) {
+      // Тактильный отклик для iPhone через WebKit
+      window.navigator.webkitVibrate();
+    } else if (window.navigator && window.navigator.impactOccurred) {
+      // Тактильный отклик через Haptic API
+      window.navigator.impactOccurred('medium');
     }
   }
 
