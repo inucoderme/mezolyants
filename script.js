@@ -50,15 +50,12 @@ document.addEventListener("DOMContentLoaded", () => {
     (clicksCount / maxClicks) * 100
   }%`;
 
-  function triggerVibration() {
-    if (window.navigator && window.navigator.vibrate) {
-      // Вибрация для Android устройств
-      window.navigator.vibrate(50); // Вибрация на 50 миллисекунд
-    } else if (window.navigator && window.navigator.webkitVibrate) {
-      // Тактильный отклик для iPhone через WebKit
-      window.navigator.webkitVibrate();
-    } else if (window.navigator && window.navigator.impactOccurred) {
-      // Тактильный отклик через Haptic API
+  function triggerHapticFeedback() {
+    // Проверьте наличие Haptic Feedback API
+    if ('vibrate' in navigator) {
+      navigator.vibrate(50); // Вибрация на 50 миллисекунд
+    } else if ('impactOccurred' in window.navigator) {
+      // Использование Haptic Feedback API для устройств с Taptic Engine
       window.navigator.impactOccurred('medium');
     }
   }
@@ -121,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 200);
 
       // Вибрация при клике
-      triggerVibration();
+      triggerHapticFeedback();
 
       balance++;
       clicksCount++;
