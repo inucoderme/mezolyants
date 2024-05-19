@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+
 @font-face {
   font-family: "KomikaAxis";
   src: url("KOMIKAX_.ttf") format("truetype");
@@ -87,7 +89,7 @@ body {
 
 .button-container {
   position: absolute;
-  top: 60%;
+  top: 63%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
@@ -191,8 +193,8 @@ body {
   background-color: #000080;
   width: 75px;
   height: 75px;
-  left: 10px; /* Отступ слева */
-  top: 20%;
+  left: 5px; /* Отступ слева */
+  top: 16%;
   transform: translateY(-50%); /* Центрирование по вертикали */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   display: flex;
@@ -226,7 +228,7 @@ body {
   width: 75px;
   height: 75px;
   left: 270px; /* Отступ слева */
-  top: -4%;
+  top: -24%;
   transform: translateY(-50%); /* Центрирование по вертикали */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   display: flex;
@@ -235,4 +237,102 @@ body {
   cursor: pointer; /* Курсор в виде руки для кнопки */
   text-decoration: none; /* Убрать подчеркивание текста */
   z-index: 1; /* Размещает псевдоэлемент ниже текста */
+}
+
+.center-info {
+  display: flex;
+  flex-direction: column;
+  background-color: #000080;
+  border-radius: 10px;
+  transform: translateY(-50px);
+  align-items: center;
+  width: 60%; /* Полная ширина */
+  height: 20%;
+  margin: 0 auto; /* Центрирование блока */
+  font-family: "Chakra Petch", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: #ffffff; /* Белый цвет текста */
+}
+
+.center-content {
+  width: 50%; /* Ограничение ширины содержимого до 50% */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info-main {
+  font-size: 14px; /* Размер шрифта основного текста */
+  font-weight: bold;
+  margin-bottom: 8px; /* Отступ между основным текстом и деталями */
+}
+
+.info-details {
+  display: flex;
+  justify-content: center; /* Центрирование содержимого внутри блока */
+  align-items: center;
+  width: 60%; /* Ширина блока с деталями */
+  margin: auto; /* Автоматические отступы для центрирования блока */
+}
+
+.info-id,
+.info-stats {
+  margin: 0 5px; /* Уменьшенные отступы для приближения элементов */
+  font-size: 10px;
+}
+
+.info-id {
+  font-size: 15px;
+  margin-right: 5px; /* Уменьшенный отступ справа */
+  transform: translateY(-6px); /* Поднять элемент вверх */
+}
+
+.info-stats {
+  display: flex;
+  align-items: center;
+}
+
+.info-stats img {
+  width: 40px; /* Размер изображения */
+  align-items: center;
+  margin-right: 10px; /* Отступ между изображением и числом */
+}
+
+.info-stats span {
+  font-size: 15px;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fade-out {
+  animation: fadeOut 0.5s forwards;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s forwards;
+}
+
+.fade {
+  transition: opacity 0.5s ease-in-out;
+}
+
+.hidden {
+  opacity: 0;
 }
