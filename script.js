@@ -54,8 +54,10 @@ document.addEventListener("DOMContentLoaded", () => {
     // Использование WebKit Haptic Feedback API для устройств с Taptic Engine
     if (window.navigator && window.navigator.vibrate) {
       window.navigator.vibrate(50); // Вибрация на 50 миллисекунд
+    } else if (window.navigator && window.navigator.webkitVibrate) {
+      window.navigator.webkitVibrate(50); // Вибрация на 50 миллисекунд для WebKit
     } else if (window.navigator && window.navigator.impactOccurred) {
-      window.navigator.impactOccurred('medium');
+      window.navigator.impactOccurred('medium'); // Haptic Feedback API для Taptic Engine
     }
   }
 
