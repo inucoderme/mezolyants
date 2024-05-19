@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Предотвращаем стандартное поведение браузера
   document.body.addEventListener(
     "touchmove",
     (e) => {
@@ -23,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
     { passive: false }
   );
 
-  // Запрет контекстного меню (правого клика)
   document.addEventListener("contextmenu", (e) => {
     e.preventDefault();
   });
@@ -38,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     recoveryStart = parseInt(localStorage.getItem("recoveryStart")) || null,
     recoveryInterval;
 
-  const RECOVERY_DURATION = 3 * 60 * 60 * 1000; // 3 часа
+  const RECOVERY_DURATION = 3 * 60 * 60 * 1000;
 
   function formatNumber(num) {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -56,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
     renderer = new THREE.WebGLRenderer({ alpha: true });
+    renderer.setPixelRatio(window.devicePixelRatio); // Используем разрешение экрана устройства
     renderer.setSize(700, 700);
     document.getElementById("threeContainer").appendChild(renderer.domElement);
 
