@@ -5,6 +5,17 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  const lastLoadingTime = localStorage.getItem("lastLoadingTime");
+  const currentTime = new Date().getTime();
+
+  // Проверяем, прошло ли уже 30 минут (1800000 миллисекунд)
+  if (!lastLoadingTime || currentTime - lastLoadingTime > 1800000) {
+    localStorage.setItem("lastLoadingTime", currentTime.toString());
+    window.location.href = "loading.html"; // Перенаправляем на loading.html
+  }
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   document.body.addEventListener(
     "touchmove",
@@ -217,3 +228,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
   init();
 });
+
+// Функция для генерации случайного числа в указанном диапазоне
+function getRandomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// Функция для обновления значений ID и статистики с анимацией
+function updateInfo() {
+  const randomID = getRandomNumber(10000000, 60000000);
+  const randomStats = getRandomNumber(20000, 50000).toLocaleString("ru-RU");
+
+  const infoId = document.querySelector(".info-id");
+  const infoStats = document.querySelector(".info-stats span");
+
+  // Добавляем класс для плавного исчезновения
+  infoId.classList.add("hidden");
+  infoStats.classList.add("hidden");
+
+  // Ждем завершения анимации исчезновения перед обновлением текста
+  setTimeout(() => {
+    infoId.textContent = `ID: ${randomID}`;
+    infoStats.textContent = randomStats;
+
+    // Убираем класс исчезновения для плавного появления
+    infoId.classList.remove("hidden");
+    infoStats.classList.remove("hidden");
+  }, 500); // Время должно совпадать с длительностью перехода в CSS
+}
+
+// Добавляем класс fade к элементам для плавного перехода
+document.querySelector(".info-id").classList.add("fade");
+document.querySelector(".info-stats span").classList.add("fade");
+
+// Устанавливаем интервал для обновления значений каждые три секунды
+setInterval(updateInfo, 3000);
+
+// Первоначальное обновление значений
+updateInfo();
