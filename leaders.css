@@ -25,6 +25,19 @@ body {
   user-select: none; /* Отключение выделения текста по стандарту */
 }
 
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://img.freepik.com/free-photo/background-of-gradient-lights_23-2149304985.jpg"); /* Путь к вашему изображению */
+  background-size: cover; /* Подогнать изображение по размеру */
+  background-position: center; /* Центрирование изображения */
+  z-index: -1; /* Размещает псевдоэлемент ниже содержимого */
+}
+
 html,
 body {
   overflow: hidden;
@@ -204,6 +217,7 @@ body {
   cursor: pointer;
   font-family: "KomikaAxis", sans-serif;
   font-size: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .hidden {
