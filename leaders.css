@@ -108,12 +108,12 @@ body {
 .info-text {
   font-size: 14px;
   color: #ffffff;
-  margin-right: 10px; /* Расстояние между текстом и гифкой */
+  margin-right: 5px; /* Расстояние между текстом и гифкой */
 }
 
 .info-gif {
-  width: 30px; /* Ширина гифки */
-  height: 30px; /* Высота гифки */
+  width: 20px; /* Ширина гифки */
+  height: 20px; /* Высота гифки */
 }
 
 .input-like-container {
