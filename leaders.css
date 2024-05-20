@@ -1,0 +1,222 @@
+@font-face {
+  font-family: "KomikaAxis";
+  src: url("KOMIKAX_.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background: linear-gradient(
+    to bottom,
+    #000080,
+    #0000cd
+  ); /* Темно-синий градиент */
+  font-family: "KomikaAxis", sans-serif; /* Используем шрифт KomikaAxis */
+  position: relative; /* Для позиционирования кнопки по центру */
+  -webkit-user-select: none; /* Отключение выделения текста в Safari и Chrome */
+  -moz-user-select: none; /* Отключение выделения текста в Firefox */
+  -ms-user-select: none; /* Отключение выделения текста в IE10+ */
+  user-select: none; /* Отключение выделения текста по стандарту */
+}
+
+html,
+body {
+  overflow: hidden;
+  touch-action: none;
+  -ms-touch-action: none;
+  -webkit-overflow-scrolling: auto;
+}
+
+.content-leaders {
+  width: 350px;
+  height: 140px;
+  background-color: hwb(240 40% 12% / 0.231);
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden; /* Чтобы скрыть выступающие элементы псевдоэлемента */
+  -webkit-user-select: none; /* Отключение выделения текста в Safari и Chrome */
+  -moz-user-select: none; /* Отключение выделения текста в Firefox */
+  -ms-user-select: none; /* Отключение выделения текста в IE10+ */
+  user-select: none; /* Отключение выделения текста по стандарту */
+}
+
+.content-leaders::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://pbs.twimg.com/media/Fy6c8pjWIAM5gqU?format=jpg&name=large"); /* Путь к вашему изображению */
+  background-size: cover; /* Подогнать изображение по размеру */
+  background-position: center; /* Центрирование изображения */
+  opacity: 0.2; /* Прозрачность изображения */
+  z-index: -1; /* Размещает псевдоэлемент ниже текста */
+}
+
+.leaders-text {
+  position: absolute;
+  top: 5px; /* Расстояние от верха блока */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: #ffffff;
+}
+
+.balance-leaders {
+  font-family: "Montserrat", sans-serif;
+  font-size: 22px;
+  font-weight: bold;
+  color: #ffffff;
+  margin-top: 5px;
+  overflow: hidden; /* Скрывает текст, выходящий за пределы элемента */
+  text-overflow: ellipsis; /* Добавляет многоточие, если текст обрезается */
+  white-space: nowrap; /* Предотвращает перенос строк */
+}
+
+.additional-info {
+  display: flex;
+  align-items: center;
+  margin-top: 10px; /* Расстояние от верхнего блока */
+}
+
+.info-text {
+  font-size: 14px;
+  color: #ffffff;
+  margin-right: 10px; /* Расстояние между текстом и гифкой */
+}
+
+.info-gif {
+  width: 30px; /* Ширина гифки */
+  height: 30px; /* Высота гифки */
+}
+
+.input-like-container {
+  display: flex;
+  justify-content: center; /* Центрируем текст по горизонтали */
+  align-items: center; /* Центрируем текст по вертикали */
+  width: 250px;
+  height: 40px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 10px; /* Расстояние от блока с гифкой */
+  padding: 0 10px;
+  font-family: "KomikaAxis", sans-serif;
+  position: relative;
+}
+
+.input-like-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("coin.png"); /* Путь к вашему изображению */
+  background-size: cover; /* Подогнать изображение по размеру */
+  background-position: center; /* Центрирование изображения */
+  opacity: 0.5; /* Прозрачность изображения */
+  z-index: -1; /* Размещает псевдоэлемент ниже текста */
+}
+
+.input-text {
+  font-size: 14px;
+  color: hsl(0, 0%, 100%);
+  z-index: 1; /* Текст над изображением */
+}
+
+.hidden {
+  display: none;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  height: 40px;
+  background-color: hwb(0 100% 0% / 0.1);
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 10px; /* Расстояние от предыдущего блока */
+}
+
+.action-button {
+  background-color: hwb(243 24% 15% / 0);
+  color: #ffffff;
+  width: 250px;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.blinking-dot {
+  width: 10px; /* Размер точки */
+  height: 10px; /* Размер точки */
+  background-color: hwb(61 0% 0%);
+  border-radius: 50%;
+  margin-left: 10px; /* Расстояние от текста */
+  animation: blink 1s infinite;
+  display: inline-block;
+}
+
+.back-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: auto; /* Сдвигаем кнопку вниз */
+  margin-bottom: 20px; /* Добавляем отступ снизу */
+}
+
+.back-button {
+  background-color: hsla(240, 100%, 25%, 0.314);
+  color: #ffffff;
+  border: none;
+  width: 90%;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-family: "KomikaAxis", sans-serif;
+  font-size: 16px;
+}
+
+.hidden {
+  display: none;
+}
+
+.collapsible {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.5s ease-out;
+}
+
+.collapsible-expanded {
+  max-height: 100px; /* Достаточно, чтобы вместить кнопку */
+  transition: max-height 0.5s ease-in;
+}
