@@ -1,17 +1,34 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const balanceElement = document.querySelector(".balance-leaders");
-  const logElement = document.createElement("div");
-  document.body.appendChild(logElement);
+  // Prevent context menu
+  document.addEventListener("contextmenu", (event) => event.preventDefault());
 
+  // Prevent opening developer tools with F12 or Ctrl+Shift+I
+  document.addEventListener("keydown", (event) => {
+    if (
+      (event.ctrlKey && event.shiftKey && event.key === "I") ||
+      (event.ctrlKey && event.shiftKey && event.key === "J") ||
+      (event.ctrlKey && event.key === "U") ||
+      event.key === "F12"
+    ) {
+      event.preventDefault();
+    }
+  });
+
+  const balanceElement = document.querySelector(".balance-leaders");
+
+  // Use a fixed base time for consistency across all users
   const baseTime = new Date("2024-05-19T00:00:00Z").getTime();
-  let lastUpdate = parseInt(localStorage.getItem("lastUpdate"), 10);
-  let currentBalance = parseInt(localStorage.getItem("currentBalance"), 10);
+  let lastUpdate = localStorage.getItem("lastUpdate");
+  let currentBalance = localStorage.getItem("currentBalance");
 
   if (!lastUpdate || !currentBalance) {
-    lastUpdate = baseTime; // Устанавливаем начальное время как базовое время
+    lastUpdate = baseTime; // Set initial time to base time
     currentBalance = calculateInitialBalance();
     localStorage.setItem("lastUpdate", lastUpdate);
     localStorage.setItem("currentBalance", currentBalance);
+  } else {
+    lastUpdate = parseInt(lastUpdate, 10);
+    currentBalance = parseInt(currentBalance, 10);
   }
 
   function getRandomIncrement(min, max) {
@@ -38,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
       balanceChange +=
         getRandomIncrement(100, 500) - getRandomIncrement(100, 200);
     }
-    lastUpdate = now; // Обновляем последнее время обновления
+    lastUpdate = now; // Update the last update time
     localStorage.setItem("lastUpdate", lastUpdate);
     return balanceChange;
   }
