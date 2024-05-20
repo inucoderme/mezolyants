@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
     renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(700, 700);
+    renderer.setSize(750, 750);
     document.getElementById("threeContainer").appendChild(renderer.domElement);
 
     const textureLoader = new THREE.TextureLoader();
