@@ -220,3 +220,11 @@ body {
   max-height: 100px; /* Достаточно, чтобы вместить кнопку */
   transition: max-height 0.5s ease-in;
 }
+
+.new-text {
+  text-align: center;
+  margin: 20px 0;
+  color: #ffffff; /* Белый цвет текста */
+  font-family: "KomikaAxis", sans-serif; /* Используем шрифт KomikaAxis */
+  font-size: 20px;
+}
