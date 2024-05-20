@@ -102,18 +102,12 @@ body {
 
 .button-container {
   position: absolute;
-  top: 57%;
+  top: 59%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.center-button {
-  width: 490px; /* Уменьшение размера кнопки */
-  height: auto;
-  transition: transform 0.2s; /* Плавный переход для наклона */
 }
 
 .fly-text {
