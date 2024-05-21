@@ -120,7 +120,7 @@ body {
   display: flex;
   justify-content: center; /* Центрируем текст по горизонтали */
   align-items: center; /* Центрируем текст по вертикали */
-  width: 250px;
+  width: 330px;
   height: 40px;
   border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
