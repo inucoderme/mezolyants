@@ -102,7 +102,7 @@ body {
 
 .button-container {
   position: absolute;
-  top: 59%;
+  top: 58%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
@@ -222,12 +222,11 @@ body {
   color: white; /* Цвет текста */
   text-align: center;
   font-size: 10px; /* Размер шрифта */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .right-button {
   position: relative;
-  background-image: url("https://tailwindcomponents.com/gradient-generator/assets/header.a6837f08.webp"); /* Укажите путь к вашему изображению */
+  background-image: url("https://st5.depositphotos.com/76174578/65104/i/450/depositphotos_651043724-stock-photo-abstract-hexagonal-technology-background.jpg"); /* Укажите путь к вашему изображению */
   background-size: cover; /* Заполнение всей доступной области, сохраняя пропорции */
   background-position: center; /* Центрирование изображения */
   border-radius: 15px;
@@ -244,4 +243,58 @@ body {
   cursor: pointer; /* Курсор в виде руки для кнопки */
   text-decoration: none; /* Убрать подчеркивание текста */
   z-index: 1; /* Размещает псевдоэлемент ниже текста */
+}
+
+.unique-bottom-right-button {
+  position: fixed;
+  background-image: url("https://media.istockphoto.com/id/1285588443/vector/abstract-green-cube-pattern-on-dark-blue-background-modern-lines-square-mesh-simple-flat.jpg?s=612x612&w=0&k=20&c=3FWkq_fKFriUC8k2Ps65lcDe-ttCD5_01nbBY0JNGaA=");
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px;
+  background-color: #000080;
+  width: 75px;
+  height: 75px;
+  right: 30px; /* Отступ справа */
+  bottom: 65px; /* Отступ снизу */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  z-index: 100; /* Убедитесь, что кнопка будет видима над другими элементами */
+}
+
+.unique-bottom-right-button span {
+  margin-top: 30px; /* Отступ между изображением и текстом */
+  color: white; /* Цвет текста */
+  text-align: center;
+  font-size: 10px; /* Размер шрифта */
+}
+
+.unique-bottom-left-button {
+  position: fixed;
+  background-image: url("https://static.vecteezy.com/system/resources/thumbnails/001/927/394/small/dark-flat-background-free-vector.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px;
+  background-color: #000080;
+  width: 75px;
+  height: 75px;
+  left: 30px; /* Отступ слева */
+  bottom: 65px; /* Отступ снизу */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  z-index: 100; /* Убедитесь, что кнопка будет видима над другими элементами */
+}
+
+.unique-bottom-left-button span {
+  margin-top: 30px; /* Отступ между изображением и текстом */
+  color: white; /* Цвет текста */
+  text-align: center;
+  font-size: 10px; /* Размер шрифта */
 }
