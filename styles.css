@@ -193,15 +193,15 @@ body {
 
 .side-button {
   position: relative;
-  background-image: url("https://static.vecteezy.com/system/resources/previews/002/184/738/non_2x/polygon-black-gold-background-free-vector.jpg"); /* Укажите путь к вашему изображению */
+  background-image: url("bu1.jpg"); /* Укажите путь к вашему изображению */
   background-size: cover; /* Заполнение всей доступной области, сохраняя пропорции */
   background-position: center; /* Центрирование изображения */
   border-radius: 15px;
   background-color: #000080;
   width: 75px;
-  height: 74px;
+  height: 75px;
   left: 10px; /* Отступ слева */
-  top: 16%;
+  top: 15.7%;
   transform: translateY(-50%); /* Центрирование по вертикали */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   display: flex;
@@ -226,7 +226,7 @@ body {
 
 .right-button {
   position: relative;
-  background-image: url("https://st5.depositphotos.com/76174578/65104/i/450/depositphotos_651043724-stock-photo-abstract-hexagonal-technology-background.jpg"); /* Укажите путь к вашему изображению */
+  background-image: url("bu4.jpg"); /* Укажите путь к вашему изображению */
   background-size: cover; /* Заполнение всей доступной области, сохраняя пропорции */
   background-position: center; /* Центрирование изображения */
   border-radius: 15px;
@@ -247,7 +247,7 @@ body {
 
 .unique-bottom-right-button {
   position: relative;
-  background-image: url("https://freevector-images.s3.amazonaws.com/uploads/vector/preview/40954/FREEVECTOR-Flat-Chocolate-Background-Revisi-DP1221_generated.jpg");
+  background-image: url("bu3.jpg");
   background-size: cover;
   background-position: center;
   border-radius: 15px;
@@ -274,7 +274,7 @@ body {
 
 .unique-bottom-left-button {
   position: relative;
-  background-image: url("https://cdn.pixabay.com/photo/2020/12/13/15/49/red-5828571_1280.jpg");
+  background-image: url("bu2.jpg");
   background-size: cover;
   background-position: center;
   border-radius: 15px;
