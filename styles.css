@@ -193,7 +193,7 @@ body {
 
 .side-button {
   position: relative;
-  background-image: url("bu1.jpg"); /* Укажите путь к вашему изображению */
+  background-image: url("https://static.vecteezy.com/system/resources/thumbnails/042/534/171/small/purple-gradient-abstract-background-purple-comic-sunburst-effect-background-with-halftone-suitable-for-templates-sales-banners-events-ads-web-and-pages-vector.jpg"); /* Укажите путь к вашему изображению */
   background-size: cover; /* Заполнение всей доступной области, сохраняя пропорции */
   background-position: center; /* Центрирование изображения */
   border-radius: 15px;
@@ -215,10 +215,11 @@ body {
 .side-button img {
   width: 50px; /* Размер изображения */
   height: auto;
+  margin-top: 5px;
 }
 
 .side-button span {
-  margin-top: 30px; /* Отступ между изображением и текстом */
+  margin-top: -3px;
   color: white; /* Цвет текста */
   text-align: center;
   font-size: 10px; /* Размер шрифта */
@@ -226,7 +227,7 @@ body {
 
 .right-button {
   position: relative;
-  background-image: url("bu4.jpg"); /* Укажите путь к вашему изображению */
+  background-image: url("https://static.vecteezy.com/system/resources/thumbnails/042/534/171/small/purple-gradient-abstract-background-purple-comic-sunburst-effect-background-with-halftone-suitable-for-templates-sales-banners-events-ads-web-and-pages-vector.jpg"); /* Укажите путь к вашему изображению */
   background-size: cover; /* Заполнение всей доступной области, сохраняя пропорции */
   background-position: center; /* Центрирование изображения */
   border-radius: 15px;
@@ -247,7 +248,7 @@ body {
 
 .unique-bottom-right-button {
   position: relative;
-  background-image: url("bu3.jpg");
+  background-image: url("https://static.vecteezy.com/system/resources/thumbnails/042/534/171/small/purple-gradient-abstract-background-purple-comic-sunburst-effect-background-with-halftone-suitable-for-templates-sales-banners-events-ads-web-and-pages-vector.jpg");
   background-size: cover;
   background-position: center;
   border-radius: 15px;
@@ -265,8 +266,14 @@ body {
   z-index: 100; /* Убедитесь, что кнопка будет видима над другими элементами */
 }
 
+.unique-bottom-right-button img {
+  width: 50px; /* Размер изображения */
+  height: auto;
+  margin-top: 5px;
+}
+
 .unique-bottom-right-button span {
-  margin-top: 30px; /* Отступ между изображением и текстом */
+  margin-top: -3px;
   color: white; /* Цвет текста */
   text-align: center;
   font-size: 10px; /* Размер шрифта */
@@ -274,7 +281,7 @@ body {
 
 .unique-bottom-left-button {
   position: relative;
-  background-image: url("bu2.jpg");
+  background-image: url("https://static.vecteezy.com/system/resources/thumbnails/042/534/171/small/purple-gradient-abstract-background-purple-comic-sunburst-effect-background-with-halftone-suitable-for-templates-sales-banners-events-ads-web-and-pages-vector.jpg");
   background-size: cover;
   background-position: center;
   border-radius: 15px;
@@ -292,8 +299,14 @@ body {
   z-index: 100; /* Убедитесь, что кнопка будет видима над другими элементами */
 }
 
+.unique-bottom-left-button img {
+  width: 50px; /* Размер изображения */
+  height: auto;
+  margin-top: 5px;
+}
+
 .unique-bottom-left-button span {
-  margin-top: 30px; /* Отступ между изображением и текстом */
+  margin-top: -3px;
   color: white; /* Цвет текста */
   text-align: center;
   font-size: 10px; /* Размер шрифта */
