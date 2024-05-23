@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Изменение текста на кнопке на "Done"
-    button.textContent = "Done";
+    button.textContent = "Waiting 🙊";
 
     // Активация тактильного отклика
     triggerHapticFeedback();
