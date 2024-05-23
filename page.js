@@ -1,23 +1,24 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const button = document.querySelector(".join-button");
+document.addEventListener('DOMContentLoaded', function () {
+  const button = document.querySelector('.join-button');
 
-  button.addEventListener("click", function () {
+  function triggerHapticFeedback() {
+    if (window.Telegram && window.Telegram.WebApp) {
+      window.Telegram.WebApp.HapticFeedback.impactOccurred("medium");
+    }
+  }
+
+  button.addEventListener('click', function() {
     // Запуск эффекта конфетти
     confetti({
       particleCount: 100,
       spread: 70,
-      origin: { y: 0.6 },
+      origin: { y: 0.6 }
     });
 
     // Изменение текста на кнопке на "Done"
-    button.textContent = "Expect 🙊";
+    button.textContent = "Done";
 
-    // Использование Haptic Feedback через Telegram Mini Apps
-    if (Telegram.WebApp.MainButton) {
-      Telegram.WebApp.MainButton.showProgress();
-      setTimeout(() => {
-        Telegram.WebApp.MainButton.hideProgress();
-      }, 200);
-    }
+    // Активация тактильного отклика
+    triggerHapticFeedback();
   });
 });
