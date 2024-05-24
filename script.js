@@ -36,42 +36,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Определение мобильного устройства
-  function isMobileDevice() {
-    return /Mobi|Android/i.test(navigator.userAgent);
-  }
-
   // Обнаружение инструментов разработчика
   function detectDevTools() {
-    if (isMobileDevice()) {
-      return; // Не выполнять проверку на мобильных устройствах
-    }
-
-    const threshold = 160;
-    let lastHeight = window.innerHeight;
-    let lastWidth = window.innerWidth;
-
+    const threshold = 100;
     setInterval(function () {
-      const devtools = /./;
-      devtools.toString = function () {
-        this.opened = true;
-      };
-
-      console.log(devtools);
-
       if (
-        window.outerHeight - window.innerHeight > threshold ||
         window.outerWidth - window.innerWidth > threshold ||
-        lastHeight !== window.innerHeight ||
-        lastWidth !== window.innerWidth ||
-        devtools.opened
+        window.outerHeight - window.innerHeight > threshold
       ) {
+        alert("Закройте инструменты разработчика для продолжения работы!");
         window.location.href = "https://mrbeast.store/"; // Замените URL на нужный вам сайт
       }
-
-      lastHeight = window.innerHeight;
-      lastWidth = window.innerWidth;
-    }, 500); // Увеличьте частоту проверки до 500 мс
+    }, 1000); // Проверка каждые 1000 мс
   }
 
   detectDevTools();
