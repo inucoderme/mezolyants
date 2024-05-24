@@ -35,7 +35,9 @@ document.addEventListener("DOMContentLoaded", () => {
     clicksCount = parseInt(localStorage.getItem("clicksCount")) || 0,
     recoveryStart = parseInt(localStorage.getItem("recoveryStart")) || null,
     recoveryInterval,
-    specialMultiplierActive = false;
+    specialMultiplierActive = false,
+    originalClicksCount = clicksCount, // Добавлено для сохранения исходного количества кликов
+    originalMultiplier = parseInt(localStorage.getItem("multiplier")) || 1; // Добавлено для сохранения исходного множителя
 
   const RECOVERY_DURATION = 3 * 60 * 60 * 1000;
 
@@ -80,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     animate();
     checkRecovery();
-    checkRocketPurchase(); // Проверяем покупку ракеты при инициализации
+    checkRocketPurchase();
   }
 
   function animate() {
@@ -117,15 +119,14 @@ document.addEventListener("DOMContentLoaded", () => {
         buttonMesh.rotation.y = 0;
       }, 200);
 
-      // Вибрация при клике
       triggerHapticFeedback();
 
-      balance += 1 * multiplier; // Увеличиваем баланс с учетом множителя
+      balance += 1 * multiplier;
       localStorage.setItem("balance", balance.toString());
       document.querySelector(".balance").textContent = formatNumber(balance);
 
       if (!specialMultiplierActive) {
-        clicksCount += multiplier; // Увеличиваем количество кликов с учетом множителя только если не в спец режиме
+        clicksCount += multiplier;
         localStorage.setItem("clicksCount", clicksCount.toString());
         document.querySelector(".clicks-left").textContent = `Clicks / ${
           maxClicks - clicksCount
@@ -135,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }%`;
       }
 
-      createFlyText(event.clientX, event.clientY, multiplier); // Передаем множитель
+      createFlyText(event.clientX, event.clientY, multiplier);
 
       if (clicksCount >= maxClicks && !specialMultiplierActive) {
         renderer.domElement.style.pointerEvents = "none";
@@ -147,7 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function createFlyText(x, y, multiplier) {
     const flyText = document.createElement("div");
-    flyText.textContent = `+${multiplier}`; // Показываем текст в зависимости от множителя
+    flyText.textContent = `+${multiplier}`;
     flyText.className = "fly-text";
     flyText.style.left = `${x}px`;
     flyText.style.top = `${y}px`;
@@ -225,39 +226,41 @@ document.addEventListener("DOMContentLoaded", () => {
   function checkRocketPurchase() {
     const rocketImage = document.createElement("img");
     if (localStorage.getItem("rocketPurchased") === "true") {
-      rocketImage.src = "rockets.png"; // Укажите путь к вашей картинке
+      rocketImage.src = "rockets.png";
       rocketImage.style.position = "fixed";
       rocketImage.style.left = Math.random() * 100 + "%";
       rocketImage.style.top = Math.random() * 100 + "%";
-      rocketImage.style.width = "120px"; // Установите желаемый размер
-      rocketImage.style.height = "120px"; // Установите желаемый размер
+      rocketImage.style.width = "120px";
+      rocketImage.style.height = "120px";
       rocketImage.style.cursor = "pointer";
-      rocketImage.style.zIndex = "1000"; // Устанавливаем высокий z-index, чтобы быть выше всех элементов
+      rocketImage.style.zIndex = "1000";
       document.body.appendChild(rocketImage);
 
       rocketImage.addEventListener("click", function () {
-        let multiplier = parseInt(localStorage.getItem("multiplier")) || 1;
-        const originalMultiplier = multiplier;
-        multiplier = Math.floor(Math.random() * (150 + 1)) * 10 + 1000; // Установка случайного множителя от 1000 до 2500 с шагом 10
-        localStorage.setItem("multiplier", multiplier.toString());
-        specialMultiplierActive = true; // Активация специального режима
+        originalClicksCount = clicksCount; // Сохраняем исходное количество кликов
+        originalMultiplier = parseInt(localStorage.getItem("multiplier")) || 1; // Сохраняем исходный множитель
+        const randomMultiplier = Math.floor(Math.random() * 16) * 10 + 1000; // Случайный множитель от 1000 до 2500
 
-        // Замораживаем обновление кликов и прогресс-бара
-        const originalClicksCount = clicksCount;
+        localStorage.setItem("multiplier", randomMultiplier.toString());
+        specialMultiplierActive = true;
+
         const originalProgressWidth =
           document.querySelector(".progress-bar").style.width;
 
-        rocketImage.remove(); // Сразу удаляем картинку после нажатия
+        rocketImage.remove();
 
-        document.body.classList.add("space-background"); // Добавляем класс для анимации космоса
+        document.body.classList.add("space-background");
 
         setTimeout(() => {
-          localStorage.setItem("multiplier", originalMultiplier.toString()); // Возврат к исходному множителю
-          specialMultiplierActive = false; // Деактивация специального режима
-          clicksCount = originalClicksCount; // Восстановление исходного количества кликов
+          localStorage.setItem("multiplier", originalMultiplier.toString());
+          specialMultiplierActive = false;
+          clicksCount = originalClicksCount; // Возвращаем исходное количество кликов
           document.querySelector(".progress-bar").style.width =
-            originalProgressWidth; // Восстановление ширины прогресс-бара
-          document.body.classList.remove("space-background"); // Убираем класс анимации космоса
+            originalProgressWidth;
+          document.querySelector(".clicks-left").textContent = `clicks / ${
+            maxClicks - clicksCount
+          }`; // Обновляем текст кликов
+          document.body.classList.remove("space-background");
           localStorage.removeItem("rocketPurchased");
         }, 10000);
       });
@@ -267,7 +270,6 @@ document.addEventListener("DOMContentLoaded", () => {
   init();
 });
 
-// CSS-анимация для эффекта полета сквозь звезды
 const style = document.createElement("style");
 style.innerHTML = `
   .space-background {
@@ -284,7 +286,7 @@ style.innerHTML = `
     left: 0;
     width: 100%;
     height: 100%;
-    background: transparent url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice"><g fill="white"><circle r="2" cx="50%" cy="50%" /><circle r="2" cx="30%" cy="30%" /><circle r="2" cx="80%" cy="70%" /><circle r="2" cx="60%" cy="20%" /><circle r="2" cx="20%" cy="50%" /><circle r="2" cx="40%" cy="60%" /><circle r="2" cx="70%" cy="40%" /><circle r="2" cx="90%" cy="80%" /></g></svg>') repeat;
+    background: transparent url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice"><g fill="white"><circle r="2" cx="50%" cy="50%" /><circle r="2" cx="30%" /><circle r="2" cx="80%" /><circle r="2" cx="60%" /><circle r="2" cx="20%" /><circle r="2" cx="40%" /><circle r="2" cx="70%" /><circle r="2" cx="90%" /></g></svg>') repeat;
     opacity: 0.6;
     animation: stars 1s linear infinite;
   }
