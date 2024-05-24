@@ -57,8 +57,8 @@ document.addEventListener("DOMContentLoaded", function () {
   document
     .getElementById("third-button")
     .addEventListener("click", function () {
-      if (balance >= 2) {
-        balance -= 2; // Списание с баланса
+      if (balance >= 50000) {
+        balance -= 50000; // Списание с баланса
         localStorage.setItem("balance", balance.toString()); // Сохранение нового значения баланса
         localStorage.setItem("rocketPurchased", "true"); // Флаг о покупке ракеты
 
