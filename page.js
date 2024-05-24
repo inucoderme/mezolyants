@@ -30,53 +30,38 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Определение мобильного устройства
-  function isMobileDevice() {
-    return /Mobi|Android/i.test(navigator.userAgent);
-  }
-
-  // Обнаружение инструментов разработчика и перенаправление
-  function detectDevTools() {
-    if (isMobileDevice()) {
-      return; // Не выполнять проверку на мобильных устройствах
-    }
-
-    var threshold = 200; // Пороговое значение для определения открытия инструментов разработчика
-    if (
-      window.outerHeight - window.innerHeight > threshold ||
-      window.outerWidth - window.innerWidth > threshold
-    ) {
-      // Перенаправление на другой сайт
-      window.location.href = "https://example.com"; // Замените URL на нужный вам сайт
-    }
-  }
-
-  window.addEventListener("resize", detectDevTools);
-  setInterval(detectDevTools, 1000);
-
-  // Инициализация кнопки и Haptic Feedback
   const button = document.querySelector(".join-button");
 
-  button.addEventListener("click", function () {
-    // Запуск эффекта конфетти
-    confetti({
-      particleCount: 100,
-      spread: 70,
-      origin: { y: 0.6 },
+  if (button) {
+    button.addEventListener("click", function () {
+      // Запуск эффекта конфетти
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+      });
+
+      // Изменение текста на кнопке на "Expect 🙊"
+      button.textContent = "Expect 🙊";
+
+      // Использование Haptic Feedback через Telegram Mini Apps
+      if (Telegram.WebApp.HapticFeedback) {
+        Telegram.WebApp.HapticFeedback.impactOccurred("heavy");
+      } else {
+        console.error("HapticFeedback не поддерживается на этом устройстве.");
+      }
+
+      // Показываем прогресс на MainButton
+      if (Telegram.WebApp.MainButton) {
+        Telegram.WebApp.MainButton.showProgress();
+        setTimeout(() => {
+          Telegram.WebApp.MainButton.hideProgress();
+        }, 200);
+      } else {
+        console.error("MainButton не поддерживается на этом устройстве.");
+      }
     });
-
-    // Изменение текста на кнопке на "Done"
-    button.textContent = "Expect 🙊";
-
-    // Использование Haptic Feedback через Telegram Mini Apps
-    if (Telegram.WebApp.MainButton) {
-      Telegram.WebApp.HapticFeedback.impactOccurred("heavy");
-      Telegram.WebApp.MainButton.showProgress();
-      setTimeout(() => {
-        Telegram.WebApp.MainButton.hideProgress();
-      }, 200);
-    } else {
-      console.error("Telegram WebApp MainButton не поддерживается на этом устройстве.");
-    }
-  });
+  } else {
+    console.error(".join-button не найден.");
+  }
 });
