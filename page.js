@@ -41,6 +41,18 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Attempting to show progress on MainButton...");
 
     // Использование Haptic Feedback через Telegram Mini Apps
+    if (Telegram.WebApp.HapticFeedback) {
+      try {
+        Telegram.WebApp.HapticFeedback.impactOccurred("medium");
+        console.log("Haptic Feedback triggered.");
+      } catch (error) {
+        console.error("Error triggering Haptic Feedback:", error);
+      }
+    } else {
+      console.error("HapticFeedback is not available.");
+    }
+
+    // Использование MainButton прогресса
     if (Telegram.WebApp.MainButton) {
       Telegram.WebApp.MainButton.showProgress();
       console.log("Progress shown on MainButton.");
