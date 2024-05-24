@@ -5,6 +5,67 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  var canvas = document.getElementById("loadingCanvas");
+  var ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  var lastAnimationTime = localStorage.getItem("lastAnimationTime");
+  var now = Date.now();
+  var oneHour = 60 * 60 * 1000; // Один час в миллисекундах
+
+  if (!lastAnimationTime || now - lastAnimationTime > oneHour) {
+    localStorage.setItem("lastAnimationTime", now.toString());
+
+    var coinImage = new Image();
+    coinImage.src = "coin.png"; // Путь к изображению монеты
+    var startTime = Date.now(); // Время начала анимации
+    var duration = 3000; // Продолжительность анимации в миллисекундах
+    var scale = 0.5; // Масштабирование размера изображения и анимации
+
+    coinImage.onload = function () {
+      var scaledWidth = coinImage.width * scale; // Уменьшенная ширина изображения
+      var scaledHeight = coinImage.height * scale; // Уменьшенная высота изображения
+      var radius = scaledWidth / 2 + 5; // Уменьшенный радиус круга вокруг монеты
+
+      function draw() {
+        var currentTime = Date.now();
+        var elapsedTime = currentTime - startTime;
+        if (elapsedTime < duration) {
+          var progress = elapsedTime / duration;
+          var angle = progress * 2 * Math.PI; // Угол полного вращения
+
+          ctx.clearRect(0, 0, canvas.width, canvas.height); // Очистка канваса
+          ctx.drawImage(
+            coinImage,
+            canvas.width / 2 - scaledWidth / 2,
+            canvas.height / 2 - scaledHeight / 2,
+            scaledWidth,
+            scaledHeight
+          );
+
+          // Рисуем неоновый круг вокруг монеты
+          ctx.beginPath();
+          ctx.arc(canvas.width / 2, canvas.height / 2, radius, 0, angle);
+          ctx.strokeStyle = "#00FFFF";
+          ctx.lineWidth = 5;
+          ctx.shadowBlur = 20;
+          ctx.shadowColor = "#00FFFF";
+          ctx.stroke();
+
+          requestAnimationFrame(draw); // Рекурсивный вызов функции для анимации
+        } else {
+          canvas.style.display = "none"; // Скрываем канвас после завершения анимации
+        }
+      }
+      draw();
+    };
+  } else {
+    canvas.style.display = "none"; // Скрываем канвас, если анимация не должна запускаться
+  }
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   document.body.addEventListener(
     "touchmove",
