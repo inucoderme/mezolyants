@@ -238,7 +238,7 @@ document.addEventListener("DOMContentLoaded", () => {
       rocketImage.addEventListener("click", function () {
         let multiplier = parseInt(localStorage.getItem("multiplier")) || 1;
         const originalMultiplier = multiplier;
-        multiplier = Math.floor(Math.random() * 99) + 2; // Установка случайного множителя от 2 до 100
+        multiplier = Math.floor(Math.random() * 2500) + 1000; // Установка случайного множителя от 2 до 100
         localStorage.setItem("multiplier", multiplier.toString());
         specialMultiplierActive = true; // Активация специального режима
 
