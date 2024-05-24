@@ -1,0 +1,149 @@
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+
+@font-face {
+  font-family: "KomikaAxis";
+  src: url("KOMIKAX_.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background: linear-gradient(
+    to bottom,
+    #000080,
+    #0000cd
+  ); /* Темно-синий градиент */
+  font-family: "KomikaAxis", sans-serif;
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://img.freepik.com/free-photo/background-of-gradient-lights_23-2149304985.jpg");
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+}
+
+html,
+body {
+  overflow: hidden;
+  touch-action: none;
+  -ms-touch-action: none;
+  -webkit-overflow-scrolling: auto;
+}
+
+.emoji-text-container {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.emoji-box {
+  width: 120px; /* Можешь изменить размер по желанию */
+  height: 120px; /* Можешь изменить размер по желанию */
+  background-color: #ffffff28; /* Фоновый цвет блока */
+  border-radius: 12px; /* Закругление углов */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px; /* Размер эмодзи */
+  position: relative;
+}
+
+.text-container {
+  margin-left: 10px; /* Отступ между эмодзи и текстом */
+  display: flex;
+  font-family: "Montserrat", sans-serif;
+  flex-direction: column; /* Гарантирует вертикальное расположение текстов */
+}
+
+.text-box {
+  font-size: 28px; /* Размер основного текста */
+  color: hsl(0, 0%, 100%);
+}
+
+.subtext-box {
+  font-size: 12px; /* Размер мелкого текста */
+  color: hsla(0, 0%, 100%, 0.283); /* Цвет мелкого текста */
+  margin-top: 5px;
+}
+
+.emoji-box::before {
+  content: "⚡"; /* Эмодзи здесь */
+  display: block;
+  transform: translateY(-5px); /* Поднимает эмодзи на 5px выше внутри блока */
+}
+
+.emoji-box1::before {
+  content: " ☝️"; /* Эмодзи здесь */
+  display: block;
+  transform: translateY(-5px); /* Поднимает эмодзи на 5px выше внутри блока */
+}
+
+.emoji-box2::before {
+  content: "🚀"; /* Эмодзи здесь */
+  display: block;
+  transform: translateY(-5px); /* Поднимает эмодзи на 5px выше внутри блока */
+}
+
+.emoji-box1 {
+  width: 120px; /* Можешь изменить размер по желанию */
+  height: 120px; /* Можешь изменить размер по желанию */
+  background-color: #ffffff28; /* Фоновый цвет блока */
+  border-radius: 12px; /* Закругление углов */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px; /* Размер эмодзи */
+  position: relative;
+}
+
+.emoji-box2 {
+  width: 120px; /* Можешь изменить размер по желанию */
+  height: 120px; /* Можешь изменить размер по желанию */
+  background-color: #ffffff28; /* Фоновый цвет блока */
+  border-radius: 12px; /* Закругление углов */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px; /* Размер эмодзи */
+  position: relative;
+}
+
+.back-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: auto; /* Сдвигаем кнопку вниз */
+  margin-bottom: 20px; /* Добавляем отступ снизу */
+}
+
+.back-button {
+  background-color: hsla(240, 100%, 25%, 0.314);
+  color: #ffffff;
+  border: none;
+  width: 90%;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-family: "KomikaAxis", sans-serif;
+  font-size: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
