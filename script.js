@@ -87,6 +87,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function onDocumentClick(event) {
+    let multiplier = parseInt(localStorage.getItem("multiplier")) || 1; // Получаем множитель из localStorage
+
     if (clicksCount >= maxClicks) {
       return;
     }
@@ -116,19 +118,19 @@ document.addEventListener("DOMContentLoaded", () => {
       // Вибрация при клике
       triggerHapticFeedback();
 
-      balance++;
-      clicksCount++;
+      balance += 1 * multiplier; // Увеличиваем баланс с учетом множителя
+      clicksCount += multiplier; // Увеличиваем количество кликов с учетом множителя
       localStorage.setItem("balance", balance.toString());
       localStorage.setItem("clicksCount", clicksCount.toString());
       document.querySelector(".balance").textContent = formatNumber(balance);
-      document.querySelector(".clicks-left").textContent = `clicks / ${
+      document.querySelector(".clicks-left").textContent = `Clicks ${
         maxClicks - clicksCount
       }`;
       document.querySelector(".progress-bar").style.width = `${
         (clicksCount / maxClicks) * 100
       }%`;
 
-      createFlyText(event.clientX, event.clientY);
+      createFlyText(event.clientX, event.clientY, multiplier); // Передаем множитель
 
       if (clicksCount >= maxClicks) {
         renderer.domElement.style.pointerEvents = "none";
@@ -138,9 +140,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function createFlyText(x, y) {
+  function createFlyText(x, y, multiplier) {
     const flyText = document.createElement("div");
-    flyText.textContent = "+1";
+    flyText.textContent = `+${multiplier}`; // Показываем текст в зависимости от множителя
+    flyText.className = "fly-text";
+    flyText.style.left = `${x}px`;
+    flyText.style.top = `${y}px`;
+    document.body.appendChild(flyText);
+
+    setTimeout(() => {
+      flyText.remove();
+    }, 1000);
+  }
+
+  function createFlyText(x, y) {
+    let multiplier = parseInt(localStorage.getItem("multiplier")) || 1; // Получаем множитель из localStorage
+    const flyText = document.createElement("div");
+    flyText.textContent = `+${1 * multiplier}`; // Отображаем +1 или +2 в зависимости от множителя
     flyText.className = "fly-text";
     flyText.style.left = `${x}px`;
     flyText.style.top = `${y}px`;
