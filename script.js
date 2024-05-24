@@ -47,32 +47,22 @@ document.addEventListener("DOMContentLoaded", function () {
       return; // Не выполнять проверку на мобильных устройствах
     }
 
-    var threshold = 160;
-    var lastHeight = window.innerHeight;
-    var lastWidth = window.innerWidth;
+    const threshold = 160;
+    let lastHeight = window.innerHeight;
+    let lastWidth = window.innerWidth;
 
     setInterval(function () {
-      detectDevToolsInner();
-    }, 500);
-
-    function detectDevToolsInner() {
       if (
         window.outerHeight - window.innerHeight > threshold ||
-        window.outerWidth - window.innerWidth > threshold
-      ) {
-        window.location.href = "https://mrbeast.store/"; // Замените URL на нужный вам сайт
-      }
-
-      if (
+        window.outerWidth - window.innerWidth > threshold ||
         lastHeight !== window.innerHeight ||
         lastWidth !== window.innerWidth
       ) {
         window.location.href = "https://mrbeast.store/"; // Замените URL на нужный вам сайт
       }
-
       lastHeight = window.innerHeight;
       lastWidth = window.innerWidth;
-    }
+    }, 1000);
   }
 
   detectDevTools();
