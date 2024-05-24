@@ -6,6 +6,33 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+  // Проверка, запущен ли сайт внутри Telegram WebApp
+  if (!window.Telegram || !window.Telegram.WebApp) {
+    document.body.innerHTML =
+      "<h1>Этот сайт доступен только в Telegram Mini Apps</h1>";
+    return;
+  }
+
+  // Отключение контекстного меню
+  document.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+  });
+
+  // Отключение клавиш F12 и других комбинаций для открытия консоли
+  document.addEventListener("keydown", function (e) {
+    if (
+      e.key === "F12" ||
+      (e.ctrlKey &&
+        e.shiftKey &&
+        (e.key === "I" || e.key === "J" || e.key === "C")) ||
+      (e.ctrlKey && e.key === "U")
+    ) {
+      e.preventDefault();
+    }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
   var canvas = document.getElementById("loadingCanvas");
   var ctx = canvas.getContext("2d");
   canvas.width = window.innerWidth;
