@@ -53,9 +53,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   window.addEventListener("resize", detectDevTools);
   setInterval(detectDevTools, 1000);
-});
 
-document.addEventListener("DOMContentLoaded", function () {
+  // Инициализация кнопки и Haptic Feedback
   const button = document.querySelector(".join-button");
 
   button.addEventListener("click", function () {
@@ -71,10 +70,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Использование Haptic Feedback через Telegram Mini Apps
     if (Telegram.WebApp.MainButton) {
+      Telegram.WebApp.HapticFeedback.impactOccurred("heavy");
       Telegram.WebApp.MainButton.showProgress();
       setTimeout(() => {
         Telegram.WebApp.MainButton.hideProgress();
       }, 200);
+    } else {
+      console.error("Telegram WebApp MainButton не поддерживается на этом устройстве.");
     }
   });
 });
