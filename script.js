@@ -37,8 +37,17 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
+  // Определение мобильного устройства
+  function isMobileDevice() {
+    return /Mobi|Android/i.test(navigator.userAgent);
+  }
+
   // Обнаружение инструментов разработчика и перенаправление
   function detectDevTools() {
+    if (isMobileDevice()) {
+      return; // Не выполнять проверку на мобильных устройствах
+    }
+
     var threshold = 200; // Пороговое значение для определения открытия инструментов разработчика
     if (
       window.outerHeight - window.innerHeight > threshold ||
