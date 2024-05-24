@@ -4,9 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="power.css" />
+
     <title>Power</title>
   </head>
   <body>
+    <canvas id="alertCanvas"></canvas>
     <div class="balance-display">
       <img
         src="https://static.vecteezy.com/system/resources/thumbnails/009/342/607/small/shiny-coins-clipart-design-illustration-free-png.png"
@@ -14,6 +16,9 @@
         class="balance-icon"
       />
       <span id="balance">0</span>
+    </div>
+    <div class="link-container">
+      <a href="workis.html" class="balance-link">How it works?</a>
     </div>
 
     <div class="semi-circle-container">
@@ -27,7 +32,7 @@
               alt="Icon 1"
               class="sub-icon"
             />
-            500
+            5000
           </div>
         </div>
       </button>
@@ -41,7 +46,7 @@
               alt="Icon 2"
               class="sub-icon"
             />
-            2.000
+            <span id="multitap-cost">20</span>
           </div>
         </div>
       </button>
@@ -58,6 +63,13 @@
             20.000
           </div>
         </div>
+      </button>
+    </div>
+
+    <!-- Кнопка "Назад" -->
+    <div class="back-button-container">
+      <button class="back-button" onclick="window.location.href='index.html'">
+        Back
       </button>
     </div>
 
