@@ -13,6 +13,10 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
+  // Инициализация Telegram WebApp
+  Telegram.WebApp.ready();
+  Telegram.WebApp.expand();
+
   // Отключение контекстного меню
   document.addEventListener("contextmenu", function (e) {
     e.preventDefault();
@@ -25,8 +29,10 @@ document.addEventListener("DOMContentLoaded", function () {
       (e.ctrlKey &&
         e.shiftKey &&
         (e.key === "I" || e.key === "J" || e.key === "C")) ||
-      (e.ctrlKey && e.key === "U")
+      (e.ctrlKey && e.key === "U") ||
+      (e.metaKey && e.altKey && e.key === "I")
     ) {
+      // Option+Command+I on Mac
       e.preventDefault();
     }
   });
