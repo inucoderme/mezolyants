@@ -52,7 +52,7 @@ body {
   position: absolute;
   font-family: "Montserrat", sans-serif;
   font-weight: bold;
-  top: 150px; /* Расстояние от верха */
+  top: 120px; /* Расстояние от верха */
   left: 50%; /* Центрирование по горизонтали */
   transform: translateX(-50%); /* Точное центрирование */
   color: hsl(0, 0%, 100%); /* Цвет текста */
@@ -127,4 +127,55 @@ body {
   height: 16px; /* Задаем размер иконки */
   margin-right: 5px; /* Отступ справа от иконки до текста */
   vertical-align: middle; /* Выравнивание иконки по центру строки */
+}
+
+.back-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: auto; /* Сдвигаем кнопку вниз */
+  margin-bottom: 20px; /* Добавляем отступ снизу */
+}
+
+.back-button {
+  background-color: hsla(240, 100%, 25%, 0.314);
+  color: #ffffff;
+  border: none;
+  width: 90%;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-family: "KomikaAxis", sans-serif;
+  font-size: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#alertCanvas {
+  position: fixed;
+  top: 8%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px; /* фиксированная ширина */
+  height: 100px; /* фиксированная высота */
+  display: none;
+  border-radius: 20px;
+  z-index: 1000;
+}
+
+.link-container {
+  position: absolute;
+  top: 150px; /* Регулируйте значение, чтобы подогнать положение */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.balance-link {
+  display: block;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  color: #ff6f00; /* Цвет текста */
+  text-decoration: none; /* Убрать подчеркивание */
+  font-size: 20px; /* Размер шрифта */
+  margin-top: 10px; /* Отступ сверху */
 }
