@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
+  console.log("DOM fully loaded and parsed");
+
   const button = document.querySelector(".join-button");
 
   if (!button) {
@@ -17,8 +19,14 @@ document.addEventListener("DOMContentLoaded", function () {
   Telegram.WebApp.ready();
   Telegram.WebApp.expand();
 
+  // Показать MainButton
+  Telegram.WebApp.MainButton.setText("Join");
+  Telegram.WebApp.MainButton.show();
+
   // Добавляем обработчик клика на кнопку
   button.addEventListener("click", function () {
+    console.log("Button clicked");
+
     // Запуск эффекта конфетти
     confetti({
       particleCount: 100,
