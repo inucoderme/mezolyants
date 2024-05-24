@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelector(".balance").textContent = formatNumber(balance);
 
       if (!specialMultiplierActive) {
-        clicksCount += multiplier;
+        clicksCount = Math.min(clicksCount + multiplier, maxClicks); // Обновление с учетом предела кликов
         localStorage.setItem("clicksCount", clicksCount.toString());
         document.querySelector(".clicks-left").textContent = `Clicks / ${
           maxClicks - clicksCount
@@ -186,7 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const interval = RECOVERY_DURATION / maxClicks;
           recoveryInterval = setInterval(() => {
             if (clicksCount > 0) {
-              clicksCount--;
+              clicksCount = Math.max(0, clicksCount - 1); // Обновление с учетом предела кликов
               document.querySelector(".clicks-left").textContent = `clicks / ${
                 maxClicks - clicksCount
               }`;
@@ -234,6 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
       rocketImage.style.height = "120px";
       rocketImage.style.cursor = "pointer";
       rocketImage.style.zIndex = "1000";
+      rocketImage.classList.add("rocket-shake"); // Добавляем класс для анимации
       document.body.appendChild(rocketImage);
 
       rocketImage.addEventListener("click", function () {
@@ -270,6 +271,7 @@ document.addEventListener("DOMContentLoaded", () => {
   init();
 });
 
+// Добавляем стили только один раз
 const style = document.createElement("style");
 style.innerHTML = `
   .space-background {
@@ -286,13 +288,13 @@ style.innerHTML = `
     left: 0;
     width: 100%;
     height: 100%;
-    background: transparent url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice"><g fill="white"><circle r="2" cx="50%" cy="50%" /><circle r="2" cx="30%" /><circle r="2" cx="80%" /><circle r="2" cx="60%" /><circle r="2" cx="20%" /><circle r="2" cx="40%" /><circle r="2" cx="70%" /><circle r="2" cx="90%" /></g></svg>') repeat;
+    background: transparent url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice"><g fill="white"><circle r="4" cx="50%" cy="50%" /><circle r="4" cx="30%" cy="30%" /><circle r="4" cx="80%" cy="70%" /><circle r="4" cx="60%" cy="20%" /><circle r="4" cx="20%" cy="50%" /><circle r="4" cx="40%" cy="60%" /><circle r="4" cx="70%" cy="40%" /><circle r="4" cx="90%" cy="80%" /></g></svg>') repeat;
     opacity: 0.6;
-    animation: stars 1s linear infinite;
+    animation: stars 60s linear infinite;
   }
 
   .space-background::after {
-    animation-delay: -0.5s;
+    animation-delay: -30s;
   }
 
   @keyframes stars {
@@ -300,8 +302,27 @@ style.innerHTML = `
       transform: translateY(0);
     }
     100% {
-      transform: translateY(-100%);
+      transform: translateY(-1000px);
     }
+  }
+
+  @keyframes rocket-shake {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-5px);
+    }
+    50% {
+      transform: translateX(5px);
+    }
+    75% {
+      transform: translateX(-5px);
+    }
+  }
+
+  .rocket-shake {
+    animation: rocket-shake 0.5s infinite;
   }
 `;
 document.head.appendChild(style);
