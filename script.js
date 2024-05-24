@@ -32,7 +32,6 @@ document.addEventListener("DOMContentLoaded", function () {
       (e.ctrlKey && e.key === "U") ||
       (e.metaKey && e.altKey && e.key === "I")
     ) {
-      // Option+Command+I on Mac
       e.preventDefault();
     }
   });
@@ -48,18 +47,35 @@ document.addEventListener("DOMContentLoaded", function () {
       return; // Не выполнять проверку на мобильных устройствах
     }
 
-    var threshold = 200; // Пороговое значение для определения открытия инструментов разработчика
-    if (
-      window.outerHeight - window.innerHeight > threshold ||
-      window.outerWidth - window.innerWidth > threshold
-    ) {
-      // Перенаправление на другой сайт
-      window.location.href = "https://mrbeast.store/"; // Замените URL на нужный вам сайт
+    var threshold = 160;
+    var lastHeight = window.innerHeight;
+    var lastWidth = window.innerWidth;
+
+    setInterval(function () {
+      detectDevToolsInner();
+    }, 500);
+
+    function detectDevToolsInner() {
+      if (
+        window.outerHeight - window.innerHeight > threshold ||
+        window.outerWidth - window.innerWidth > threshold
+      ) {
+        window.location.href = "https://mrbeast.store/"; // Замените URL на нужный вам сайт
+      }
+
+      if (
+        lastHeight !== window.innerHeight ||
+        lastWidth !== window.innerWidth
+      ) {
+        window.location.href = "https://mrbeast.store/"; // Замените URL на нужный вам сайт
+      }
+
+      lastHeight = window.innerHeight;
+      lastWidth = window.innerWidth;
     }
   }
 
-  window.addEventListener("resize", detectDevTools);
-  setInterval(detectDevTools, 1000);
+  detectDevTools();
 });
 
 document.addEventListener("DOMContentLoaded", function () {
