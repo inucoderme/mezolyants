@@ -36,6 +36,21 @@ document.addEventListener("DOMContentLoaded", function () {
       e.preventDefault();
     }
   });
+
+  // Обнаружение инструментов разработчика
+  function detectDevTools() {
+    if (
+      window.outerHeight - window.innerHeight > 100 ||
+      window.outerWidth - window.innerWidth > 100
+    ) {
+      alert("Developer tools detected. Please close them.");
+      document.body.innerHTML =
+        "<h1>Пожалуйста, закройте инструменты разработчика.</h1>";
+    }
+  }
+
+  window.addEventListener("resize", detectDevTools);
+  setInterval(detectDevTools, 1000);
 });
 
 document.addEventListener("DOMContentLoaded", function () {
