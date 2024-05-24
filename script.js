@@ -37,15 +37,15 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // Обнаружение инструментов разработчика
+  // Обнаружение инструментов разработчика и перенаправление
   function detectDevTools() {
+    var threshold = 200; // Пороговое значение для определения открытия инструментов разработчика
     if (
-      window.outerHeight - window.innerHeight > 100 ||
-      window.outerWidth - window.innerWidth > 100
+      window.outerHeight - window.innerHeight > threshold ||
+      window.outerWidth - window.innerWidth > threshold
     ) {
-      alert("Developer tools detected. Please close them.");
-      document.body.innerHTML =
-        "<h1>Пожалуйста, закройте инструменты разработчика.</h1>";
+      // Перенаправление на другой сайт
+      window.location.href = "https://example.com"; // Замените URL на нужный вам сайт
     }
   }
 
