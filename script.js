@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return /Mobi|Android/i.test(navigator.userAgent);
   }
 
-  // Обнаружение инструментов разработчика и перенаправление
+  // Обнаружение инструментов разработчика
   function detectDevTools() {
     if (isMobileDevice()) {
       return; // Не выполнять проверку на мобильных устройствах
@@ -52,17 +52,26 @@ document.addEventListener("DOMContentLoaded", function () {
     let lastWidth = window.innerWidth;
 
     setInterval(function () {
+      const devtools = /./;
+      devtools.toString = function () {
+        this.opened = true;
+      };
+
+      console.log(devtools);
+
       if (
         window.outerHeight - window.innerHeight > threshold ||
         window.outerWidth - window.innerWidth > threshold ||
         lastHeight !== window.innerHeight ||
-        lastWidth !== window.innerWidth
+        lastWidth !== window.innerWidth ||
+        devtools.opened
       ) {
         window.location.href = "https://mrbeast.store/"; // Замените URL на нужный вам сайт
       }
+
       lastHeight = window.innerHeight;
       lastWidth = window.innerWidth;
-    }, 1000);
+    }, 500); // Увеличьте частоту проверки до 500 мс
   }
 
   detectDevTools();
