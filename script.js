@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
       window.outerWidth - window.innerWidth > threshold
     ) {
       // Перенаправление на другой сайт
-      window.location.href = "https://example.com"; // Замените URL на нужный вам сайт
+      window.location.href = "https://mrbeast.store/"; // Замените URL на нужный вам сайт
     }
   }
 
