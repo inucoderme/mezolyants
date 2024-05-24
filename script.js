@@ -34,7 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
     maxClicks = 5000,
     clicksCount = parseInt(localStorage.getItem("clicksCount")) || 0,
     recoveryStart = parseInt(localStorage.getItem("recoveryStart")) || null,
-    recoveryInterval;
+    recoveryInterval,
+    specialMultiplierActive = false;
 
   const RECOVERY_DURATION = 3 * 60 * 60 * 1000;
 
@@ -79,6 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     animate();
     checkRecovery();
+    checkRocketPurchase(); // Проверяем покупку ракеты при инициализации
   }
 
   function animate() {
@@ -87,9 +89,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function onDocumentClick(event) {
-    let multiplier = parseInt(localStorage.getItem("multiplier")) || 1; // Получаем множитель из localStorage
+    let multiplier = parseInt(localStorage.getItem("multiplier")) || 1;
 
-    if (clicksCount >= maxClicks) {
+    if (clicksCount >= maxClicks && !specialMultiplierActive) {
       return;
     }
 
@@ -119,20 +121,23 @@ document.addEventListener("DOMContentLoaded", () => {
       triggerHapticFeedback();
 
       balance += 1 * multiplier; // Увеличиваем баланс с учетом множителя
-      clicksCount += multiplier; // Увеличиваем количество кликов с учетом множителя
       localStorage.setItem("balance", balance.toString());
-      localStorage.setItem("clicksCount", clicksCount.toString());
       document.querySelector(".balance").textContent = formatNumber(balance);
-      document.querySelector(".clicks-left").textContent = `Clicks ${
-        maxClicks - clicksCount
-      }`;
-      document.querySelector(".progress-bar").style.width = `${
-        (clicksCount / maxClicks) * 100
-      }%`;
+
+      if (!specialMultiplierActive) {
+        clicksCount += multiplier; // Увеличиваем количество кликов с учетом множителя только если не в спец режиме
+        localStorage.setItem("clicksCount", clicksCount.toString());
+        document.querySelector(".clicks-left").textContent = `Clicks / ${
+          maxClicks - clicksCount
+        }`;
+        document.querySelector(".progress-bar").style.width = `${
+          (clicksCount / maxClicks) * 100
+        }%`;
+      }
 
       createFlyText(event.clientX, event.clientY, multiplier); // Передаем множитель
 
-      if (clicksCount >= maxClicks) {
+      if (clicksCount >= maxClicks && !specialMultiplierActive) {
         renderer.domElement.style.pointerEvents = "none";
         renderer.domElement.style.opacity = "0.5";
         startRecovery();
@@ -143,20 +148,6 @@ document.addEventListener("DOMContentLoaded", () => {
   function createFlyText(x, y, multiplier) {
     const flyText = document.createElement("div");
     flyText.textContent = `+${multiplier}`; // Показываем текст в зависимости от множителя
-    flyText.className = "fly-text";
-    flyText.style.left = `${x}px`;
-    flyText.style.top = `${y}px`;
-    document.body.appendChild(flyText);
-
-    setTimeout(() => {
-      flyText.remove();
-    }, 1000);
-  }
-
-  function createFlyText(x, y) {
-    let multiplier = parseInt(localStorage.getItem("multiplier")) || 1; // Получаем множитель из localStorage
-    const flyText = document.createElement("div");
-    flyText.textContent = `+${1 * multiplier}`; // Отображаем +1 или +2 в зависимости от множителя
     flyText.className = "fly-text";
     flyText.style.left = `${x}px`;
     flyText.style.top = `${y}px`;
@@ -224,12 +215,91 @@ document.addEventListener("DOMContentLoaded", () => {
           ".clicks-left"
         ).textContent = `clicks / ${maxClicks}`;
         document.querySelector(".progress-bar").style.width = `0%`;
-        renderer.domElement.style.pointerEvents = "auto";
+        renderer.domElement.style.pointerPoints = "auto";
         renderer.domElement.style.opacity = "1";
         localStorage.removeItem("recoveryStart");
       }
     }
   }
 
+  function checkRocketPurchase() {
+    const rocketImage = document.createElement("img");
+    if (localStorage.getItem("rocketPurchased") === "true") {
+      rocketImage.src = "rockets.png"; // Укажите путь к вашей картинке
+      rocketImage.style.position = "fixed";
+      rocketImage.style.left = Math.random() * 100 + "%";
+      rocketImage.style.top = Math.random() * 100 + "%";
+      rocketImage.style.width = "120px"; // Установите желаемый размер
+      rocketImage.style.height = "120px"; // Установите желаемый размер
+      rocketImage.style.cursor = "pointer";
+      rocketImage.style.zIndex = "1000"; // Устанавливаем высокий z-index, чтобы быть выше всех элементов
+      document.body.appendChild(rocketImage);
+
+      rocketImage.addEventListener("click", function () {
+        let multiplier = parseInt(localStorage.getItem("multiplier")) || 1;
+        const originalMultiplier = multiplier;
+        multiplier = Math.floor(Math.random() * 99) + 2; // Установка случайного множителя от 2 до 100
+        localStorage.setItem("multiplier", multiplier.toString());
+        specialMultiplierActive = true; // Активация специального режима
+
+        // Замораживаем обновление кликов и прогресс-бара
+        const originalClicksCount = clicksCount;
+        const originalProgressWidth =
+          document.querySelector(".progress-bar").style.width;
+
+        rocketImage.remove(); // Сразу удаляем картинку после нажатия
+
+        document.body.classList.add("space-background"); // Добавляем класс для анимации космоса
+
+        setTimeout(() => {
+          localStorage.setItem("multiplier", originalMultiplier.toString()); // Возврат к исходному множителю
+          specialMultiplierActive = false; // Деактивация специального режима
+          clicksCount = originalClicksCount; // Восстановление исходного количества кликов
+          document.querySelector(".progress-bar").style.width =
+            originalProgressWidth; // Восстановление ширины прогресс-бара
+          document.body.classList.remove("space-background"); // Убираем класс анимации космоса
+          localStorage.removeItem("rocketPurchased");
+        }, 10000);
+      });
+    }
+  }
+
   init();
 });
+
+// CSS-анимация для эффекта полета сквозь звезды
+const style = document.createElement("style");
+style.innerHTML = `
+  .space-background {
+    background: black;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .space-background::before,
+  .space-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice"><g fill="white"><circle r="2" cx="50%" cy="50%" /><circle r="2" cx="30%" cy="30%" /><circle r="2" cx="80%" cy="70%" /><circle r="2" cx="60%" cy="20%" /><circle r="2" cx="20%" cy="50%" /><circle r="2" cx="40%" cy="60%" /><circle r="2" cx="70%" cy="40%" /><circle r="2" cx="90%" cy="80%" /></g></svg>') repeat;
+    opacity: 0.6;
+    animation: stars 1s linear infinite;
+  }
+
+  .space-background::after {
+    animation-delay: -0.5s;
+  }
+
+  @keyframes stars {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-100%);
+    }
+  }
+`;
+document.head.appendChild(style);
