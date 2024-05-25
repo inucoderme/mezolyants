@@ -6,23 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  var userAgent = navigator.userAgent;
-  var isTelegramWeb =
-    userAgent.includes("Telegram") &&
-    (userAgent.includes("Chrome") || userAgent.includes("Safari"));
-
-  if (isTelegramWeb) {
-    alert(
-      "Извините, доступ через веб-версию Telegram не поддерживается. Пожалуйста, используйте мобильное приложение."
-    );
-    // Отображение элемента с информацией о несовместимости
-    document.getElementById("incompatible-warning").style.display = "block";
-    // Скрытие остального содержимого
-    document.getElementById("app-content").style.display = "none";
-  }
-});
-
-document.addEventListener("DOMContentLoaded", function () {
   var canvas = document.getElementById("loadingCanvas");
   var ctx = canvas.getContext("2d");
   canvas.width = window.innerWidth;
