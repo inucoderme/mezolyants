@@ -6,14 +6,19 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
+  var userAgent = navigator.userAgent;
   var isTelegramWeb =
-    navigator.userAgent.includes("Telegram") &&
-    (navigator.userAgent.includes("Chrome") ||
-      navigator.userAgent.includes("Safari"));
+    userAgent.includes("Telegram") &&
+    (userAgent.includes("Chrome") || userAgent.includes("Safari"));
 
   if (isTelegramWeb) {
-    alert("Извините, доступ через веб-версию Telegram не поддерживается.");
-    window.location.href = "https://example.com/unsupported.html"; // Укажите URL, на который следует перенаправить пользователя.
+    alert(
+      "Извините, доступ через веб-версию Telegram не поддерживается. Пожалуйста, используйте мобильное приложение."
+    );
+    // Отображение элемента с информацией о несовместимости
+    document.getElementById("incompatible-warning").style.display = "block";
+    // Скрытие остального содержимого
+    document.getElementById("app-content").style.display = "none";
   }
 });
 
