@@ -6,14 +6,14 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  var userAgent = navigator.userAgent;
+  var isTelegramWeb =
+    navigator.userAgent.includes("Telegram") &&
+    (navigator.userAgent.includes("Chrome") ||
+      navigator.userAgent.includes("Safari"));
 
-  // Проверяем, запущено ли приложение в веб-версии Telegram
-  if (userAgent.includes("Telegram") && userAgent.includes("Web")) {
-    // Можно перенаправить на другую страницу или показать сообщение
-    window.location.href = "https://example.com/not-supported.html"; // Перенаправление на страницу "не поддерживается"
-  } else {
-    // Ваш основной код приложения
+  if (isTelegramWeb) {
+    alert("Извините, доступ через веб-версию Telegram не поддерживается.");
+    window.location.href = "https://example.com/unsupported.html"; // Укажите URL, на который следует перенаправить пользователя.
   }
 });
 
