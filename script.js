@@ -6,63 +6,15 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Проверка, запущен ли сайт внутри Telegram WebApp
-  if (!window.Telegram || !window.Telegram.WebApp) {
-    document.body.innerHTML =
-      "<h1>Этот сайт доступен только в Telegram Mini Apps</h1>";
-    return;
+  var userAgent = navigator.userAgent;
+
+  // Проверяем, запущено ли приложение в веб-версии Telegram
+  if (userAgent.includes("Telegram") && userAgent.includes("Web")) {
+    // Можно перенаправить на другую страницу или показать сообщение
+    window.location.href = "https://example.com/not-supported.html"; // Перенаправление на страницу "не поддерживается"
+  } else {
+    // Ваш основной код приложения
   }
-
-  // Инициализация Telegram WebApp
-  Telegram.WebApp.ready();
-  Telegram.WebApp.expand();
-
-  // Отключение контекстного меню
-  document.addEventListener("contextmenu", function (e) {
-    e.preventDefault();
-  });
-
-  // Отключение клавиш F12 и других комбинаций для открытия консоли
-  document.addEventListener("keydown", function (e) {
-    if (
-      e.key === "F12" ||
-      (e.ctrlKey &&
-        e.shiftKey &&
-        (e.key === "I" || e.key === "J" || e.key === "C")) ||
-      (e.ctrlKey && e.key === "U") ||
-      (e.metaKey && e.altKey && e.key === "I")
-    ) {
-      e.preventDefault();
-    }
-  });
-
-  // Определение мобильного устройства
-  function isMobileDevice() {
-    return /Mobi|Android/i.test(navigator.userAgent);
-  }
-
-  // Обнаружение инструментов разработчика
-  function detectDevTools() {
-    if (isMobileDevice()) {
-      return; // Не выполнять проверку на мобильных устройствах
-    }
-
-    let devtools = false;
-
-    const element = new Image();
-    Object.defineProperty(element, "id", {
-      get: function () {
-        devtools = true;
-        window.location.href = "https://mrbeast.store/"; // Замените URL на нужный вам сайт
-      },
-    });
-
-    setInterval(function () {
-      console.dir(element);
-    }, 1000);
-  }
-
-  detectDevTools();
 });
 
 document.addEventListener("DOMContentLoaded", function () {
