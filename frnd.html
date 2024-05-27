@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="frnd.css" />
+    <title>Frnd</title>
+  </head>
+  <body>
+    <div class="header">
+      <div class="title-container">
+        <h1>Welcome to Friends</h1>
+        <img src="star.gif" alt="Loading..." class="loading-gif" />
+      </div>
+      <p>
+        I know how much you love your friends. <br />
+        Invite them to the game and for each you will receive <br />
+        10,000 Beast Coin
+      </p>
+    </div>
+    <div class="card-container">
+      <div class="content-container">
+        <div class="image-text-container">
+          <img src="users.png" alt="Описание изображения" class="small-image" />
+          <p>Friends</p>
+        </div>
+        <div class="number-container">
+          <span id="number-display">0</span>
+        </div>
+      </div>
+      <div class="divider"></div>
+      <div class="lower-content-container">
+        <div class="lower-image-text-container">
+          <img
+            src="https://static.vecteezy.com/system/resources/thumbnails/009/342/607/small/shiny-coins-clipart-design-illustration-free-png.png"
+            alt="Описание второй картинки"
+            class="small-image"
+          />
+          <p>Gift coins</p>
+        </div>
+        <div class="lower-number-container">
+          <span id="second-number-display">0</span>
+        </div>
+      </div>
+      <div class="button-container">
+        <button class="center-button" id="claim-button">Claim</button>
+      </div>
+    </div>
+
+    <!-- Кнопка "Назад" -->
+    <div class="back-button-container">
+      <button class="back-button" onclick="window.location.href='index.html'">
+        Back
+      </button>
+    </div>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <script src="frnd.js"></script>
+  </body>
+</html>
