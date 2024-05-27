@@ -1,48 +1,47 @@
 document.addEventListener("DOMContentLoaded", function () {
-  var balance = parseInt(localStorage.getItem("balance")) || 0; // Получаем баланс из localStorage
-  document.getElementById("balance").textContent = balance; // Обновляем текст в элементе баланса
+  var balance = parseInt(localStorage.getItem("balance")) || 0;
+  document.getElementById("balance").textContent = balance;
 
-  // Обработчик клика для кнопки "Energy tap"
+  if (localStorage.getItem("starterPackUsed") === "true") {
+    document.querySelector(".custom-button-container").style.display = "none";
+  }
+
   document
     .getElementById("first-button")
     .addEventListener("click", function () {
       if (balance >= 2500) {
-        balance -= 2500; // Уменьшаем баланс
-        localStorage.setItem("balance", balance.toString()); // Сохраняем новый баланс в localStorage
-        localStorage.setItem("clicksCount", "0"); // Сбрасываем количество кликов
-        localStorage.removeItem("recoveryStart"); // Убираем таймер восстановления, если он был
+        balance -= 2500;
+        localStorage.setItem("balance", balance.toString());
+        localStorage.setItem("clicksCount", "0");
+        localStorage.removeItem("recoveryStart");
 
-        // Вибрация при успешной покупке
         if (window.Telegram && window.Telegram.WebApp) {
           window.Telegram.WebApp.HapticFeedback.impactOccurred("medium");
         }
 
-        // Перенаправляем на index.html
         window.location.href = "index.html";
       } else {
         showAlert("Not enough coins");
       }
     });
 
-  // Обработчик клика для кнопки "Multitap"
   document
     .getElementById("second-button")
     .addEventListener("click", function () {
-      var multitapCost = parseInt(localStorage.getItem("multitapCost")) || 20; // Начальная стоимость
+      var multitapCost = parseInt(localStorage.getItem("multitapCost")) || 20;
       var multiplier = parseInt(localStorage.getItem("multiplier")) || 1;
 
       if (balance >= multitapCost) {
         balance -= multitapCost;
         localStorage.setItem("balance", balance.toString());
 
-        multiplier++; // Увеличиваем множитель
+        multiplier++;
         localStorage.setItem("multiplier", multiplier.toString());
 
-        multitapCost *= 2; // Удваиваем стоимость для следующей покупки
+        multitapCost *= 2;
         localStorage.setItem("multitapCost", multitapCost.toString());
-        document.getElementById("multitap-cost").textContent = multitapCost; // Обновляем стоимость на странице
+        document.getElementById("multitap-cost").textContent = multitapCost;
 
-        // Вибрация при успешной покупке
         if (window.Telegram && window.Telegram.WebApp) {
           window.Telegram.WebApp.HapticFeedback.impactOccurred("medium");
         }
@@ -53,29 +52,25 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-  // Обработчик клика для кнопки "Beast rocket"
   document
     .getElementById("third-button")
     .addEventListener("click", function () {
       if (balance >= 50000) {
-        balance -= 50000; // Списание с баланса
-        localStorage.setItem("balance", balance.toString()); // Сохранение нового значения баланса
-        localStorage.setItem("rocketPurchased", "true"); // Флаг о покупке ракеты
+        balance -= 50000;
+        localStorage.setItem("balance", balance.toString());
+        localStorage.setItem("rocketPurchased", "true");
 
-        // Вибрация при успешной покупке
         if (window.Telegram && window.Telegram.WebApp) {
           window.Telegram.WebApp.HapticFeedback.impactOccurred("medium");
         }
 
-        window.location.href = "index.html"; // Переход на главную страницу
+        window.location.href = "index.html";
       } else {
-        showAlert("Not enough coins"); // Показываем уведомление, если недостаточно монет
+        showAlert("Not enough coins");
       }
     });
 
-  // Обработчик клика для кнопки "Back"
   document.querySelector(".back-button").addEventListener("click", function () {
-    // Вибрация при нажатии
     if (window.Telegram && window.Telegram.WebApp) {
       window.Telegram.WebApp.HapticFeedback.impactOccurred("medium");
     }
@@ -83,7 +78,6 @@ document.addEventListener("DOMContentLoaded", function () {
     window.location.href = "index.html";
   });
 
-  // Обновляем отображаемую стоимость при загрузке страницы
   var multitapCost = localStorage.getItem("multitapCost") || "20";
   document.getElementById("multitap-cost").textContent = multitapCost;
 
@@ -144,4 +138,16 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 50);
     }, 2000);
   }
+
+  window.customButtonAction = function () {
+    balance += 2000;
+    localStorage.setItem("balance", balance.toString());
+    localStorage.setItem("starterPackUsed", "true");
+
+    if (window.Telegram && window.Telegram.WebApp) {
+      window.Telegram.WebApp.HapticFeedback.impactOccurred("medium");
+    }
+
+    window.location.href = "index.html";
+  };
 });
