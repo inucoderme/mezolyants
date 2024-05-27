@@ -181,3 +181,101 @@ body {
   font-size: 20px; /* Размер шрифта */
   margin-top: 10px; /* Отступ сверху */
 }
+
+/* Стили для новой кнопки */
+.custom-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px; /* Отступ снизу */
+  position: absolute;
+  bottom: 70px; /* Расположим кнопку чуть выше кнопки "Back" */
+}
+
+.custom-button {
+  background-color: hsla(240, 100%, 25%, 0.314);
+  color: #ffffff;
+  border: none;
+  width: 80%;
+  height: 80px;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-family: "REM", sans-serif;
+  font-size: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("https://cdn.shopify.com/s/files/1/0248/2598/7134/t/3/assets/GREETINGSBG-1637808172792.jpeg");
+  opacity: 0.9; /* Прозрачность изображения */
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px; /* Увеличенный радиус для эффекта неона */
+  z-index: -1; /* Размещаем изображение под текстом */
+  box-shadow: 0 0 10px rgba(255, 223, 0, 0.5), 0 0 20px rgba(255, 223, 0, 0.5),
+    0 0 30px rgba(255, 223, 0, 0.5), 0 0 40px rgba(255, 223, 0, 0.5),
+    0 0 50px rgba(255, 223, 0, 0.5), 0 0 60px rgba(255, 223, 0, 0.5),
+    0 0 70px rgba(255, 223, 0, 0.5);
+  animation: neonGlow 2s infinite;
+}
+
+.custom-button-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.custom-button-text {
+  font-size: 16px;
+}
+
+/* Анимация плавного движения и тряски */
+@keyframes floatShake {
+  0%,
+  100% {
+    transform: translateX(0) translateY(0) rotate(0);
+  }
+  10% {
+    transform: translateX(-2px) translateY(-2px) rotate(-2deg);
+  }
+  20% {
+    transform: translateX(2px) translateY(2px) rotate(2deg);
+  }
+  30% {
+    transform: translateX(-2px) translateY(2px) rotate(-2deg);
+  }
+  40% {
+    transform: translateX(2px) translateY(-2px) rotate(2deg);
+  }
+  50% {
+    transform: translateX(-2px) translateY(-2px) rotate(-2deg);
+  }
+  60% {
+    transform: translateX(2px) translateY(2px) rotate(2deg);
+  }
+  70% {
+    transform: translateX(-2px) translateY(2px) rotate(-2deg);
+  }
+  80% {
+    transform: translateX(2px) translateY(-2px) rotate(2deg);
+  }
+  90% {
+    transform: translateX(-2px) translateY(-2px) rotate(-2deg);
+  }
+}
+
+/* Применение анимации к кнопке */
+.custom-button {
+  animation: floatShake 3s infinite;
+}
