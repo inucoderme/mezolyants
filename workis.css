@@ -162,7 +162,7 @@ body {
 }
 
 .custom-button {
-  background-color: rgb(200, 213, 6);
+  background-color: hwb(0 100% 0% / 0.303);
   color: #ffffff;
   border: none;
   width: 80%;
@@ -171,7 +171,6 @@ body {
   padding: 10px 20px;
   font-family: "REM", sans-serif;
   font-size: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -190,7 +189,7 @@ body {
 .flotext {
   font-size: 15px;
   font-family: "REM", sans-serif;
-  color: rgba(246, 255, 0, 0.865);
+  color: #ffffffa1;
   text-align: center;
   margin-top: 15px;
 }
