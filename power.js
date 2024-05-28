@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Инициализация уровня Multitap
-  var multitapLevel = parseInt(localStorage.getItem("multitapLevel")) || 0;
+  var multitapLevel = parseInt(localStorage.getItem("multitapLevel")) || 1;
   document.getElementById("multitap-level").textContent =
     "lvl " + multitapLevel;
 
