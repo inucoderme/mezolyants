@@ -6,6 +6,11 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector(".custom-button-container").style.display = "none";
   }
 
+  // Инициализация уровня Multitap
+  var multitapLevel = parseInt(localStorage.getItem("multitapLevel")) || 0;
+  document.getElementById("multitap-level").textContent =
+    "lvl " + multitapLevel;
+
   document
     .getElementById("first-button")
     .addEventListener("click", function () {
@@ -41,6 +46,12 @@ document.addEventListener("DOMContentLoaded", function () {
         multitapCost *= 2;
         localStorage.setItem("multitapCost", multitapCost.toString());
         document.getElementById("multitap-cost").textContent = multitapCost;
+
+        // Обновление уровня Multitap
+        multitapLevel++;
+        localStorage.setItem("multitapLevel", multitapLevel.toString());
+        document.getElementById("multitap-level").textContent =
+          "lvl " + multitapLevel;
 
         if (window.Telegram && window.Telegram.WebApp) {
           window.Telegram.WebApp.HapticFeedback.impactOccurred("medium");
