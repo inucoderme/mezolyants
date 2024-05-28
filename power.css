@@ -279,3 +279,10 @@ body {
 .custom-button {
   animation: floatShake 3s infinite;
 }
+
+.level-text {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-left: 5px; /* Отступ слева от основного текста */
+  vertical-align: middle; /* Выравнивание по центру строки */
+}
